@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = (req, res, next) => {
+const protect = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Access denied. No token provided.' });
+    return res.status(401).json({
+      message: 'Access denied. Please log in first.',
+    });
   }
 
   const token = authHeader.split(' ')[1];
@@ -14,6 +16,10 @@ module.exports = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    res.status(401).json({ message: 'Invalid or expired token. Please log in again.' });
+    return res.status(401).json({
+      message: 'Your session has expired. Please log in again.',
+    });
   }
 };
+
+module.exports = protect;
