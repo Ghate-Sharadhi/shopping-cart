@@ -1,102 +1,105 @@
-🛒 TechCart — Full Stack Shopping Cart
+TechCart – Full Stack Shopping Cart Application
 
-A full-stack shopping cart application built with React, Node.js, Express, and MongoDB Atlas.
+TechCart is a full-stack shopping cart application developed using React, Node.js, Express.js, and MongoDB Atlas. The project demonstrates user authentication, product management, cart operations, and order processing in a modern web application.
 
----
 
-📁 Project Structure
+
+Project Structure
 
 shopping-cart/
-├── backend/      # Node.js API
-├── frontend/     # React App
+├── backend/
+├── frontend/
 └── README.md
 
----
 
-⚙️ Backend Setup
 
-Create a ".env" file inside the "backend" folder and add:
+ Backend Setup
+
+Create a ".env" file inside the "backend" folder and add the following variables:
 
 PORT=5000
 MONGODB_URI=your_mongodb_atlas_connection_string
 JWT_SECRET=your_jwt_secret_here
 
-Install dependencies:
+Install dependencies and start the backend server:
 
 cd backend
 npm install
-
-Start the backend server:
-
 npm run dev
 
-Server runs at:
+The backend server runs on:
 
 http://localhost:5000
 
----
 
-🎨 Frontend Setup
+ Frontend Setup
+
+Install dependencies and start the React application:
 
 cd frontend
 npm install
 npm start
 
-Application runs at:
+The frontend application runs on:
 
 http://localhost:3000
 
----
 
-✅ Features Implemented
 
-- User registration and login with JWT authentication
-- Product listing fetched from MongoDB
-- Add to cart with stock validation
-- Quantity update with + / − controls
-- Remove items from cart
-- Cart persistence in MongoDB
-- Order summary page
-- Protected routes
-- Product detail popup
-- Loading indicators for API calls
-- Error handling with UI messages
-- Empty state screens
+ Features Implemented
 
----
+- User registration and login using JWT authentication
+- Product listing with data fetched from MongoDB Atlas
+- Add products to cart with stock validation
+- Increase and decrease product quantity using cart controls
+- Remove products from the cart
+- Cart data stored and persisted in MongoDB
+- Order summary page before checkout
+- Protected routes for authenticated users
+- Product detail popup for quick viewing
+- Loading indicators during API requests
+- User-friendly error handling
+- Empty state screens for products and cart
 
-🎯 Bonus Features
 
-- ✅ Cart persisted in MongoDB database
-- ✅ Quantity button disabled at stock limit
-- ✅ Order summary with Place Order
-- ✅ Loading and error states
-- ✅ Product stock decreases after order placement
 
----
+ Additional Features
 
-⚠️ Known Limitations
+>  Cart persistence using MongoDB
+>  Quantity increment disabled when stock limit is reached
+>  Order summary with Place Order functionality
+>  Loading and error states implemented across API calls
+>  Product stock automatically updated after successful order placement
 
-- No payment gateway integration yet
-- Orders are simulated after clicking "Place Order"
 
----
 
-🛠️ Tech Stack
+ Current Limitations
+
+- Payment gateway integration is not implemented
+- Orders are simulated after clicking the Place Order button
+
+
+Technologies Used
 
 Frontend
 
-- React
-- React Router
-- Axios
+> React
+> React Router
+> Axios
 
 Backend
 
-- Node.js
-- Express.js
-- JWT Authentication
+> Node.js
+> Express.js
+> JWT Authentication
 
 Database
 
-- MongoDB Atlas
-- Mongoose
+> MongoDB Atlas
+> Mongoose
+
+
+
+ Outcomes
+
+Through this project, I gained practical experience in building a full-stack web application, implementing authentication, connecting React with REST APIs, managing MongoDB databases, and handling real-world shopping cart functionality.
