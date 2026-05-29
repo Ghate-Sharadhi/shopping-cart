@@ -121,7 +121,6 @@ router.delete('/remove/:productId', async (req, res) => {
 });
 
 // POST /api/cart/place-order
-// POST /api/cart/place-order
 router.post('/place-order', async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.user.userId });
