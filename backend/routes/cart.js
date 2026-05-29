@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const Cart = require('../models/Cart');
@@ -122,19 +121,56 @@ router.delete('/remove/:productId', async (req, res) => {
 });
 
 // POST /api/cart/place-order
+// POST /api/cart/place-order
 router.post('/place-order', async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.user.userId });
+
     if (!cart || cart.items.length === 0) {
-      return res.status(400).json({ message: 'Your cart is empty. Add items before placing an order.' });
+      return res.status(400).json({
+        message: 'Your cart is empty. Please add items before placing an order.',
+      });
     }
-    const total = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const orderSummary = { items: [...cart.items], total, placedAt: new Date() };
+
+    // Decrease stock for each product in MongoDB
+    for (const item of cart.items) {
+      const product = await Product.findById(item.productId);
+      if (!product) {
+        return res.status(404).json({
+          message: `Product "${item.name}" no longer exists.`,
+        });
+      }
+      if (product.stock < item.quantity) {
+        return res.status(400).json({
+          message: `Insufficient stock for "${product.name}". Only ${product.stock} left.`,
+        });
+      }
+      product.stock -= item.quantity;
+      await product.save();
+    }
+
+    const total = cart.items.reduce(
+      (sum, item) => sum + item.price * item.quantity, 0
+    );
+
+    const orderSummary = {
+      items: [...cart.items],
+      total,
+      placedAt: new Date(),
+    };
+
     cart.items = [];
     await cart.save();
-    res.status(200).json({ message: '🎉 Order placed successfully!', order: orderSummary });
+
+    res.status(200).json({
+      message: '🎉 Order placed successfully! Thank you for shopping.',
+      order: orderSummary,
+    });
   } catch (err) {
-    res.status(500).json({ message: 'Error placing order.', error: err.message });
+    res.status(500).json({
+      message: 'Error placing order.',
+      error: err.message,
+    });
   }
 });
 
