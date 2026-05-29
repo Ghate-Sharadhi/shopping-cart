@@ -31,7 +31,7 @@ export default function Register() {
       <div style={styles.card}>
         <div style={styles.logo}><Package size={40} color="#6c63ff" /></div>
         <h2 style={styles.title}>Create Account</h2>
-        <p style={styles.sub}>Join TechCart today</p>
+        <p style={styles.sub}>Join CART One today</p>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.inputWrap}>
             <User size={18} style={styles.icon} />

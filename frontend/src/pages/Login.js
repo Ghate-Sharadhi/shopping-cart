@@ -34,7 +34,7 @@ export default function Login() {
       <div style={styles.card}>
         <div style={styles.logo}><Package size={40} color="#6c63ff" /></div>
         <h2 style={styles.title}>Welcome Back</h2>
-        <p style={styles.sub}>Sign in to TechCart</p>
+        <p style={styles.sub}>Sign in to CART One</p>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.inputWrap}>
             <Mail size={18} style={styles.icon} />
