@@ -12,8 +12,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ Auth — no protection needed
 app.use('/api/auth', authRoutes);
+
+// ✅ Products — no protection, anyone can view
 app.use('/api/products', productRoutes);
+
+// ✅ Cart — protection is handled INSIDE cart.js itself
 app.use('/api/cart', cartRoutes);
 
 app.get('/', (req, res) => {
